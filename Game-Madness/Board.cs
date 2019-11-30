@@ -39,14 +39,14 @@ namespace Game_Madness
                 if (i < (Holes.Count / 2) - 1)
                 {
                     var peg = new Peg(Colour.Red, Direction.Right);
-                    Holes[i].Peg = peg;
+                    Holes[i].AddPeg(peg);
                 }
 
                 //second half of the board - pegs that move from right to left
                 if (i > (Holes.Count / 2))
                 {
                     var peg = new Peg(Colour.Blue, Direction.Left);
-                    Holes[i].Peg = peg;
+                    Holes[i].AddPeg(peg);
                 }
             }
         }
@@ -77,15 +77,15 @@ namespace Game_Madness
             {
                 if(Holes[index - 1].HasPeg == false)
                 {
-                    Holes[index - 1].Peg = Holes[index].Peg;
-                    Holes[index].Peg = null;
+                    Holes[index - 1].AddPeg(Holes[index].Peg);
+                    Holes[index].RemovePeg();
                     return true;
                 }
 
                 if(Holes[index - 2].HasPeg == false)
                 {
-                    Holes[index - 2].Peg = Holes[index].Peg;
-                    Holes[index].Peg = null;
+                    Holes[index - 2].AddPeg(Holes[index].Peg);
+                    Holes[index].RemovePeg();
                     return true;
                 }
             }
@@ -93,15 +93,15 @@ namespace Game_Madness
             {
                 if (Holes[index + 1].HasPeg == false)
                 {
-                    Holes[index + 1].Peg = Holes[index].Peg;
-                    Holes[index].Peg = null;
+                    Holes[index + 1].AddPeg(Holes[index].Peg);
+                    Holes[index].RemovePeg();
                     return true;
                 }
 
                 if (Holes[index + 2].HasPeg == false)
                 {
-                    Holes[index + 2].Peg = Holes[index].Peg;
-                    Holes[index].Peg = null;
+                    Holes[index + 2].AddPeg(Holes[index].Peg);
+                    Holes[index].RemovePeg();
                     return true;
                 }
             }

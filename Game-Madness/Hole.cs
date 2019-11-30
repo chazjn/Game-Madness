@@ -8,8 +8,21 @@ namespace Game_Madness
 {
     class Hole
     {
-        public Peg Peg { get; set; }
+        public Peg Peg { get; private set; }
 
         public bool HasPeg => Peg != null;
+
+        public void RemovePeg()
+        {
+            Peg = null;
+        }
+
+        public void AddPeg(Peg peg)
+        {
+            if(Peg == null)
+            {
+                Peg = peg;
+            }
+        }
     }
 }

@@ -22,13 +22,21 @@ namespace Game_Madness
                 var input = Console.ReadKey(true);
                 int index = int.Parse(input.KeyChar.ToString());
 
-                board.TryMove(index);
+                var success = board.TryMove(index);
+                if (success)
+                {
+                    Score += 10;
+                }
+
             }
         }
 
         static void Display(Board board)
         {
             Console.Clear();
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
+      
             Console.WriteLine($"Score: {Score}");
             Console.WriteLine("| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
             Console.WriteLine("|=======================================|");
@@ -74,11 +82,7 @@ namespace Game_Madness
                 Console.Write(" ");
             }
 
-            Console.Write("|");
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine();
-            Console.WriteLine();
+            Console.WriteLine("|");
         }
     }
 }

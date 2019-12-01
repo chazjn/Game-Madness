@@ -46,6 +46,7 @@
     <Compile Include="Board.cs" />
     <Compile Include="Colour.cs" />
     <Compile Include="Direction.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Hole.cs" />
     <Compile Include="Peg.cs" />
     <Compile Include="Program.cs" />

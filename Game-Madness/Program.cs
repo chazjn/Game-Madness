@@ -8,26 +8,20 @@ namespace Game_Madness
 {
     class Program
     {
-        static int Score { get; set; }
-
         static void Main(string[] args)
         {
-            Score = 0;
-            var board = new Board(10);
-
+            var game = new Game();
+      
             while (true)
             {
-                Display(board);
+                Display(game.Board);
+                Console.WriteLine($"Score: {game.Score}");
+                Console.Write("Move: ");
 
                 var input = Console.ReadKey(true);
                 int index = int.Parse(input.KeyChar.ToString());
 
-                var success = board.TryMove(index);
-                if (success)
-                {
-                    Score += 10;
-                }
-
+                game.TryMove(index);
             }
         }
 
@@ -37,7 +31,6 @@ namespace Game_Madness
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
       
-            Console.WriteLine($"Score: {Score}");
             Console.WriteLine("| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
             Console.WriteLine("|=======================================|");
             

@@ -51,7 +51,7 @@ namespace Game_Madness
             }
         }
 
-        public bool TryMove(int index)
+        internal bool TryMove(int index)
         {
             if(index < 0 || index > Holes.Count - 1)
             {

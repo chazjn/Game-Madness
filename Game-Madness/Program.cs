@@ -11,18 +11,27 @@ namespace Game_Madness
         static void Main(string[] args)
         {
             var game = new Game();
-      
+
             while (true)
             {
                 Display(game.Board);
                 Console.WriteLine($"Score: {game.Score}");
+
+                if (game.GameOver())
+                {
+                    break;
+                }
+
                 Console.Write("Move: ");
-
                 var input = Console.ReadKey(true);
-                int index = int.Parse(input.KeyChar.ToString());
-
-                game.TryMove(index);
+                if(int.TryParse(input.KeyChar.ToString(), out int index))
+                {
+                    game.Move(index);
+                } 
             }
+
+            Console.WriteLine("Game Over!");
+            Console.ReadKey();
         }
 
         static void Display(Board board)

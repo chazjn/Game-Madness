@@ -16,13 +16,27 @@ namespace Game_Madness
             Board = new Board(10);
         }
 
-        public void TryMove(int index)
+        public void Move(int index)
         {
             var success = Board.TryMove(index);
             if (success)
             {
                 Score += 10;
             }
+        }
+
+        public bool GameOver()
+        {
+            for (int i = 0; i < Board.Holes.Count; i++)
+            {
+                var result = Board.CanMove(i);
+                if (result == true)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

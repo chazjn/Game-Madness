@@ -53,29 +53,29 @@ namespace Game_Madness
 
         internal bool TryMove(int index)
         {
-            if(index < 0 || index > Holes.Count - 1)
+            if (index < 0 || index > Holes.Count - 1)
             {
                 return false;
             }
 
-            if(Holes[index].HasPeg == false)
+            if (Holes[index].HasPeg == false)
             {
                 return false;
             }
 
-            if(index == 0 && Holes[index].Peg.Direction == Direction.Left)
+            if (index == 0 && Holes[index].Peg.Direction == Direction.Left)
             {
                 return false;
             }
 
-            if(index == Holes.Count - 1 && Holes[index].Peg.Direction == Direction.Right)
+            if (index == Holes.Count - 1 && Holes[index].Peg.Direction == Direction.Right)
             {
                 return false;
             }
 
-            if(Holes[index].Peg.Direction == Direction.Left)
+            if (Holes[index].Peg.Direction == Direction.Left)
             {
-                if(Holes[index - 1].HasPeg == false)
+                if (Holes[index - 1].HasPeg == false)
                 {
                     Holes[index - 1].AddPeg(Holes[index].Peg);
                     Holes[index].RemovePeg();
@@ -103,7 +103,7 @@ namespace Game_Madness
                     return true;
                 }
 
-                if(index + 2 > Holes.Count - 1)
+                if (index + 2 > Holes.Count - 1)
                 {
                     return false;
                 }
@@ -116,11 +116,60 @@ namespace Game_Madness
                 }
             }
 
+
+
+
+
+
             return false;
 
 
 
         }
 
+        internal bool CanMove(int index)
+        {
+            if(Holes[index].HasPeg == false)
+            {
+                return false;
+            }
+
+            if (Holes[index].Peg.Direction == Direction.Left)
+            {
+                if (Holes[index - 1].HasPeg == false)
+                {
+                    return true;
+                }
+
+                if (index - 2 < 0)
+                {
+                    return false;
+                }
+
+                if (Holes[index - 2].HasPeg == false)
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if (Holes[index + 1].HasPeg == false)
+                {
+                    return true;
+                }
+
+                if (index + 2 > Holes.Count - 1)
+                {
+                    return false;
+                }
+
+                if (Holes[index + 2].HasPeg == false)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

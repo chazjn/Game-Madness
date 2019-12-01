@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game_Madness
 {
-    enum Colour
+    public enum Colour
     {
         Red,
         Blue

@@ -14,7 +14,7 @@ namespace Game_Madness
 
             while (true)
             {
-                Display(game.Board);
+                game.Display();
                 Console.WriteLine($"Score: {game.Score}");
 
                 if (game.GameOver())
@@ -32,59 +32,6 @@ namespace Game_Madness
 
             Console.WriteLine("Game Over!");
             Console.ReadKey();
-        }
-
-        static void Display(Board board)
-        {
-            Console.Clear();
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
-      
-            Console.WriteLine("| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
-            Console.WriteLine("|=======================================|");
-            
-            foreach (var hole in board.Holes)
-            {
-                Console.Write("| ");
-                if (hole.HasPeg)
-                {
-                    var color = ConsoleColor.Black;
-                    switch (hole.Peg.Colour)
-                    {
-                        case Colour.Red:
-                            color = ConsoleColor.Red;
-                            break;
-                        case Colour.Blue:
-                            color = ConsoleColor.Blue;
-                            break;
-                    }
-
-                    var direction = ' ';
-                    switch (hole.Peg.Direction)
-                    {
-                        case Direction.Left:
-                            direction = '<';
-                            break;
-
-                        case Direction.Right:
-                            direction = '>';
-                            break;
-                    }
-
-                    Console.BackgroundColor = color;
-                    Console.Write(direction);
-                }
-                else
-                {
-                    Console.BackgroundColor = ConsoleColor.Black;
-                    Console.Write(" ");
-                }
-
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.Write(" ");
-            }
-
-            Console.WriteLine("|");
         }
     }
 }

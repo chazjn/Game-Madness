@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game_Madness
 {
-    class Hole
+    public class Hole
     {
         public Peg Peg { get; private set; }
 

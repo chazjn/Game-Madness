@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game_Madness
 {
-    class Board
+    public class Board
     {
         public List<Hole> Holes { get; }
 

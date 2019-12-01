@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game_Madness
 {
-    class Peg
+    public class Peg
     {
         public Colour Colour { get; }
         public Direction Direction { get; set; }

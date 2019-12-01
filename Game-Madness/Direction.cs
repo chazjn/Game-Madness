@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game_Madness
 {
-    enum Direction
+    public enum Direction
     {
         Left,
         Right

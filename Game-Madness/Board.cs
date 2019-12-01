@@ -82,7 +82,12 @@ namespace Game_Madness
                     return true;
                 }
 
-                if(Holes[index - 2].HasPeg == false)
+                if (index - 2 < 0)
+                {
+                    return false;
+                }
+
+                if (Holes[index - 2].HasPeg == false)
                 {
                     Holes[index - 2].AddPeg(Holes[index].Peg);
                     Holes[index].RemovePeg();
@@ -96,6 +101,11 @@ namespace Game_Madness
                     Holes[index + 1].AddPeg(Holes[index].Peg);
                     Holes[index].RemovePeg();
                     return true;
+                }
+
+                if(index + 2 > Holes.Count - 1)
+                {
+                    return false;
                 }
 
                 if (Holes[index + 2].HasPeg == false)

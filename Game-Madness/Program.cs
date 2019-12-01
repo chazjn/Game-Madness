@@ -19,8 +19,8 @@ namespace Game_Madness
             {
                 Display(board);
 
-                var key = Console.ReadKey(true);
-                int index = int.Parse(key.KeyChar.ToString());
+                var input = Console.ReadKey(true);
+                int index = int.Parse(input.KeyChar.ToString());
 
                 board.TryMove(index);
             }
@@ -28,13 +28,14 @@ namespace Game_Madness
 
         static void Display(Board board)
         {
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.Clear();
             Console.WriteLine($"Score: {Score}");
-            Console.WriteLine("0123456789");
+            Console.WriteLine("| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |");
+            Console.WriteLine("|=======================================|");
             
             foreach (var hole in board.Holes)
             {
+                Console.Write("| ");
                 if (hole.HasPeg)
                 {
                     var color = ConsoleColor.Black;
@@ -68,8 +69,14 @@ namespace Game_Madness
                     Console.BackgroundColor = ConsoleColor.Black;
                     Console.Write(" ");
                 }
+
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.Write(" ");
             }
 
+            Console.Write("|");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
             Console.WriteLine();
         }

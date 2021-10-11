@@ -51,80 +51,84 @@ namespace Game_Madness
             }
         }
 
-        internal bool TryMove(int index)
+        internal MoveResult TryMove(int index)
         {
             if (index < 0 || index > Holes.Count - 1)
             {
-                return false;
+                return new MoveResult(false);
             }
 
             if (Holes[index].HasPeg == false)
             {
-                return false;
+                return new MoveResult(false);
             }
 
             if (index == 0 && Holes[index].Peg.Direction == Direction.Left)
             {
-                return false;
+                return new MoveResult(false);
             }
 
             if (index == Holes.Count - 1 && Holes[index].Peg.Direction == Direction.Right)
             {
-                return false;
+                return new MoveResult(false);
             }
 
             if (Holes[index].Peg.Direction == Direction.Left)
             {
+                if(index == 0)
+                {
+                    return new MoveResult(false);
+                }
+
+
                 if (Holes[index - 1].HasPeg == false)
                 {
                     Holes[index - 1].AddPeg(Holes[index].Peg);
                     Holes[index].RemovePeg();
-                    return true;
+                    return new MoveResult(true);
                 }
 
                 if (index - 2 < 0)
                 {
-                    return false;
+                    return new MoveResult(false);
                 }
 
                 if (Holes[index - 2].HasPeg == false)
                 {
                     Holes[index - 2].AddPeg(Holes[index].Peg);
                     Holes[index].RemovePeg();
-                    return true;
+                    return new MoveResult(true, true);
                 }
             }
             else
             {
+                if (Holes.Count - 1 == index)
+                {
+                    return new MoveResult(false);
+                }
+
+
                 if (Holes[index + 1].HasPeg == false)
                 {
                     Holes[index + 1].AddPeg(Holes[index].Peg);
                     Holes[index].RemovePeg();
-                    return true;
+                    return new MoveResult(true);
                 }
 
                 if (index + 2 > Holes.Count - 1)
                 {
-                    return false;
+                    return new MoveResult(false);
                 }
 
                 if (Holes[index + 2].HasPeg == false)
                 {
                     Holes[index + 2].AddPeg(Holes[index].Peg);
                     Holes[index].RemovePeg();
-                    return true;
+                    return new MoveResult(true, true);
                 }
             }
 
-
-
-
-
-
-            return false;
-
-
-
+            return new MoveResult(false);
         }
 
         internal bool CanMove(int index)
@@ -136,6 +140,12 @@ namespace Game_Madness
 
             if (Holes[index].Peg.Direction == Direction.Left)
             {
+                if (index == 0)
+                {
+                    return false;
+                }
+
+
                 if (Holes[index - 1].HasPeg == false)
                 {
                     return true;
@@ -153,6 +163,11 @@ namespace Game_Madness
             }
             else
             {
+                if(Holes.Count - 1 == index)
+                {
+                    return false;
+                }
+
                 if (Holes[index + 1].HasPeg == false)
                 {
                     return true;
